@@ -1,0 +1,17 @@
+module {
+  func.func @test_simple_sink(%arg0: i1) -> !poly.poly<10> {
+    %0 = scf.if %arg0 -> (!poly.poly<10>) {
+      %cst = arith.constant dense<[1, 2, 3]> : tensor<3xi32>
+      %1 = poly.from_tensor %cst : tensor<3xi32> -> <10>
+      %2 = poly.mul %1, %1 : (!poly.poly<10>, !poly.poly<10>) -> !poly.poly<10>
+      scf.yield %2 : !poly.poly<10>
+    } else {
+      %cst = arith.constant dense<[9, 8, 16]> : tensor<3xi32>
+      %1 = poly.from_tensor %cst : tensor<3xi32> -> <10>
+      %2 = poly.mul %1, %1 : (!poly.poly<10>, !poly.poly<10>) -> !poly.poly<10>
+      scf.yield %2 : !poly.poly<10>
+    }
+    return %0 : !poly.poly<10>
+  }
+}
+

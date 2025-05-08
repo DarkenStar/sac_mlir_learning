@@ -1,0 +1,7 @@
+module {
+  func.func @test_simple() -> !poly.poly<10> {
+    %0 = poly.constant dense<[2, 4, 6]> : tensor<3xi32> : <10>
+    return %0 : !poly.poly<10>
+  }
+}
+

@@ -1,0 +1,4 @@
+/code/sac_mlir_learning/Ch6-Verifiers/tests/poly_verifier.mlir:5:8: error: requires each numeric operand to be a 32-bit integer
+  %0 = poly.eval %arg0, %cst : (!poly.poly<10>, i64) -> i64
+       ^
+/code/sac_mlir_learning/Ch6-Verifiers/tests/poly_verifier.mlir:5:8: note: see current operation: %0 = "poly.eval"(%arg0, %arg1) : (!poly.poly<10>, i64) -> i64

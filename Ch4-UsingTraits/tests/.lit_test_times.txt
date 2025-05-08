@@ -1,0 +1,6 @@
+1.126666e-01 code_motion.mlir
+1.129689e-01 control_flow_sink.mlir
+1.128891e-01 cse.mlir
+1.131802e-01 poly_syntax.mlir
+-1.136894e-01 poly_canonicalize.mlir
+1.098998e-01 sccp.mlir

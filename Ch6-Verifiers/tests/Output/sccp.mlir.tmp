@@ -1,0 +1,18 @@
+module {
+  func.func @test_arith_sccp() -> i32 {
+    %c63_i32 = arith.constant 63 : i32
+    %c49_i32 = arith.constant 49 : i32
+    %c14_i32 = arith.constant 14 : i32
+    %c8_i32 = arith.constant 8 : i32
+    %c7_i32 = arith.constant 7 : i32
+    return %c14_i32 : i32
+  }
+  func.func @test_poly_sccp() -> !poly.poly<10> {
+    %0 = poly.constant dense<[2, 8, 20, 24, 18]> : tensor<5xi32> : <10>
+    %1 = poly.constant dense<[1, 4, 10, 12, 9]> : tensor<5xi32> : <10>
+    %2 = poly.constant dense<[1, 2, 3]> : tensor<3xi32> : <10>
+    %cst = arith.constant dense<[1, 2, 3]> : tensor<3xi32>
+    return %1 : !poly.poly<10>
+  }
+}
+

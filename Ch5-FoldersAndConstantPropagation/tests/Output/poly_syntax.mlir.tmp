@@ -1,0 +1,23 @@
+module {
+  func.func @test_type_syntax(%arg0: !poly.poly<10>) -> !poly.poly<10> {
+    return %arg0 : !poly.poly<10>
+  }
+  func.func @test_op_syntax(%arg0: !poly.poly<10>, %arg1: !poly.poly<10>) -> !poly.poly<10> {
+    %0 = poly.add %arg0, %arg1 : (!poly.poly<10>, !poly.poly<10>) -> !poly.poly<10>
+    %1 = poly.sub %arg0, %arg1 : (!poly.poly<10>, !poly.poly<10>) -> !poly.poly<10>
+    %2 = poly.mul %arg0, %arg1 : (!poly.poly<10>, !poly.poly<10>) -> !poly.poly<10>
+    %cst = arith.constant dense<[1, 2, 3]> : tensor<3xi32>
+    %3 = poly.from_tensor %cst : tensor<3xi32> -> <10>
+    %c7_i32 = arith.constant 7 : i32
+    %4 = poly.eval %3, %c7_i32 : (<10>, i32) -> i32
+    %from_elements = tensor.from_elements %arg0, %arg1 : tensor<2x!poly.poly<10>>
+    %5 = poly.add %from_elements, %from_elements : (tensor<2x!poly.poly<10>>, tensor<2x!poly.poly<10>>) -> tensor<2x!poly.poly<10>>
+    %6 = poly.add %from_elements, %3 : (tensor<2x!poly.poly<10>>, !poly.poly<10>) -> tensor<2x!poly.poly<10>>
+    %7 = poly.constant dense<[2, 3, 4]> : tensor<3xi32> : <10>
+    %8 = poly.constant dense<[2, 3, 4]> : tensor<3xi8> : <10>
+    %9 = poly.constant dense<[2, 3, 4]> : tensor<3xi8> : <10>
+    %10 = poly.constant dense<4> : tensor<100xi32> : <10>
+    return %3 : !poly.poly<10>
+  }
+}
+
